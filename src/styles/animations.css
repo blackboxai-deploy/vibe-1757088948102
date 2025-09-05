@@ -1,0 +1,158 @@
+/* Custom animations for Memory Card Game */
+
+/* 3D card flip animations */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Tailwind-style rotate utilities */
+.rotate-y-0 {
+  transform: rotateY(0deg);
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Card flip animation */
+@keyframes card-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.animate-card-flip {
+  animation: card-flip 0.6s ease-in-out forwards;
+}
+
+/* Collection animation - spinning while moving to tray */
+@keyframes spin-collect {
+  0% {
+    transform: rotateY(180deg) rotateZ(0deg) scale(1) translateY(0px);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateY(180deg) rotateZ(360deg) scale(0.8) translateY(100px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotateY(180deg) rotateZ(720deg) scale(0.6) translateY(200px);
+    opacity: 0.3;
+  }
+}
+
+.animate-spin-collect {
+  animation: spin-collect 1s ease-out forwards;
+}
+
+/* Fade in and scale animation for collected pairs */
+@keyframes fade-in-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.5s ease-out forwards;
+}
+
+/* Bounce animation for victory emojis */
+@keyframes bounce-gentle {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 1s ease-in-out infinite;
+}
+
+/* Pulse animation for status indicators */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Shimmer effect for matched cards */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* Success highlight for matched pairs */
+@keyframes success-highlight {
+  0% {
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.animate-success-highlight {
+  animation: success-highlight 0.6s ease-out;
+}
+
+/* Responsive animations - reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-collect,
+  .animate-fade-in-scale,
+  .animate-bounce-gentle,
+  .animate-pulse-slow,
+  .animate-shimmer,
+  .animate-success-highlight,
+  .animate-card-flip {
+    animation: none;
+  }
+  
+  .rotate-y-0 {
+    transform: none;
+  }
+  
+  .rotate-y-180 {
+    transform: none;
+  }
+}
